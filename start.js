@@ -20,5 +20,12 @@ app.get('/api/customers/:id',(req,res)=>{
      if(!customer)res.status(404).send('<h2>Not found</h2>');
      res.send(customer);
 });
-
+function validateCustomer(customer){
+    const schema={
+        title:Joi.string().min(3).required()
+    };
+    return Joi.valid(customer,schema);
+}
+const port=5000;
+app.listen(port,()=>console.log('Listening on port: ${port}'));
 
